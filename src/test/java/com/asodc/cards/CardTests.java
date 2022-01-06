@@ -9,45 +9,87 @@ public class CardTests {
     public static final String NON_NULL_MESSAGE = "Card cannot be null";
 
     @Test
-    public void equalsExplicit() {
-        Card card1 = new Card(Rank.ACE, Suit.SPADES);
-        Card card2 = new Card(Rank.ACE, Suit.SPADES);
+    public void equalsReflexive() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
 
-        Assertions.assertNotNull(card1, NON_NULL_MESSAGE);
-        Assertions.assertNotNull(card2, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(x, NON_NULL_MESSAGE);
 
-        Assertions.assertEquals(card1, card2, EQUALS_MESSAGE);
+        Assertions.assertEquals(x, x, "Equals must be reflexive");
     }
 
     @Test
-    public void notEqualsExplicit() {
-        Card card1 = new Card(Rank.ACE, Suit.SPADES);
-        Card card2 = new Card(Rank.ACE, Suit.HEARTS);
+    public void equalsSymmetric() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
+        Card y = new Card(Rank.ACE, Suit.SPADES);
 
-        Assertions.assertNotNull(card1, NON_NULL_MESSAGE);
-        Assertions.assertNotNull(card2, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(x, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(y, NON_NULL_MESSAGE);
 
-        Assertions.assertNotEquals(card1, card2, NON_EQUALS_MESSAGE);
+        Assertions.assertEquals(x.equals(y), y.equals(x), "Equals must be symmetric");
     }
 
     @Test
-    public void equalsWithRandom() {
-        Rank rank = Rank.random();
-        Suit suit = Suit.random();
+    public void equalsTransitive() {
+        Card a = new Card(Rank.ACE, Suit.SPADES);
+        Card b = new Card(Rank.ACE, Suit.SPADES);
+        Card c = new Card(Rank.ACE, Suit.SPADES);
 
-        Card card1 = new Card(rank, suit);
-        Card card2 = new Card(rank, suit);
+        Assertions.assertNotNull(a, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(b, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(c, NON_NULL_MESSAGE);
 
-        Assertions.assertNotNull(card1);
-        Assertions.assertNotNull(card2);
+        final boolean first = a.equals(b);
+        final boolean second = b.equals(c);
+        final boolean third = a.equals(c);
 
-        Assertions.assertEquals(card1, card2, EQUALS_MESSAGE);
+        Assertions.assertTrue(first && second && third, "Equals must be transitive");
     }
 
     @Test
-    public void equalsSameObject() {
-        Card card = new Card(Rank.random(), Suit.random());
+    public void equalsSimple() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
+        Card y = new Card(Rank.ACE, Suit.SPADES);
 
-        Assertions.assertEquals(card, card, EQUALS_MESSAGE);
+        Assertions.assertNotNull(x, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(y, NON_NULL_MESSAGE);
+
+        Assertions.assertEquals(x, y, EQUALS_MESSAGE);
+    }
+
+    @Test
+    public void notEqualsSimple() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
+        Card y = new Card(Rank.ACE, Suit.HEARTS);
+
+        Assertions.assertNotNull(x, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(y, NON_NULL_MESSAGE);
+
+        Assertions.assertNotEquals(x, y, NON_EQUALS_MESSAGE);
+    }
+
+    @Test
+    public void hashCodeInternalConsistency() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
+
+        final int initialHashcode = x.hashCode();
+
+        x = new Card(Rank.KING, Suit.DIAMONDS);
+
+        final int newHashcode = x.hashCode();
+
+        Assertions.assertNotEquals(initialHashcode, newHashcode, "Hashcode must change when property changes");
+    }
+
+    @Test
+    public void hashCodeEqualsConsistency() {
+        Card x = new Card(Rank.ACE, Suit.SPADES);
+        Card y = new Card(Rank.ACE, Suit.SPADES);
+
+        Assertions.assertNotNull(x, NON_NULL_MESSAGE);
+        Assertions.assertNotNull(y, NON_NULL_MESSAGE);
+
+        Assertions.assertEquals(x, y, EQUALS_MESSAGE);
+
+        Assertions.assertEquals(x.hashCode(), y.hashCode(), "Equal objects must return the same hashcode");
     }
 }

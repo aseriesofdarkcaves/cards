@@ -1,5 +1,7 @@
 package com.asodc.cards;
 
+import java.util.Objects;
+
 public class Card {
     private final Rank rank;
     private final Suit suit;
@@ -19,13 +21,13 @@ public class Card {
 
     @Override
     public String toString() {
-        return getRank()+ " of " + getSuit();
+        return getRank() + " of " + getSuit();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Card) {
-            Card otherCard = ((Card) obj);
+            Card otherCard = (Card) obj;
             Rank otherRank = otherCard.getRank();
             Suit otherSuit = otherCard.getSuit();
 
@@ -36,7 +38,6 @@ public class Card {
 
     @Override
     public int hashCode() {
-        // TODO: implement hashCode
-        return 1;
+        return Objects.hash(rank, suit);
     }
 }
