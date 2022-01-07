@@ -1,8 +1,12 @@
 package com.asodc.cards;
 
+import java.util.List;
+
 public class CardsGame {
     public static void main(String[] args) {
-        Card card = new Card(Rank.random(), Suit.random());
-        System.out.println(card);
+        Deck deck = new Deck();
+        List<Card> hand = deck.deal(26);
+        System.out.println(hand);
+        System.out.println(deck);
     }
 }
