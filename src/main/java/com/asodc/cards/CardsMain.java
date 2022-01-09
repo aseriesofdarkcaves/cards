@@ -1,6 +1,6 @@
 package com.asodc.cards;
 
-import com.asodc.cards.poker.TexasHoldEmPokerGame;
+import com.asodc.cards.poker.TexasHoldEm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class CardsMain {
         playerList.add(player2);
         playerList.add(player3);
 
-        TexasHoldEmPokerGame texasHoldEmPokerGame = new TexasHoldEmPokerGame(playerList);
-        texasHoldEmPokerGame.start();
+        TexasHoldEm texasHoldEm = new TexasHoldEm(playerList);
+        texasHoldEm.start();
     }
 }

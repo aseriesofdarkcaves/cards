@@ -8,12 +8,12 @@ import com.asodc.cards.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TexasHoldEmPokerGame implements CardGame {
+public class TexasHoldEm implements CardGame {
     private List<Player> players;
     private Deck deck;
     private List<Card> communityCards;
 
-    public TexasHoldEmPokerGame(List<Player> players) {
+    public TexasHoldEm(List<Player> players) {
         this.players = players;
         this.deck = new Deck();
         this.communityCards = new ArrayList<>();
@@ -60,7 +60,7 @@ public class TexasHoldEmPokerGame implements CardGame {
     }
 
     private void printCommunityCards() {
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 
     @Override
