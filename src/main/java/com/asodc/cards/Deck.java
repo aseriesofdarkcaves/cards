@@ -8,7 +8,7 @@ public class Deck {
     private List<Card> cards;
 
     /**
-     * Construct a standard Deck containing 52 distinct Cards in a random order.
+     * Create a standard Deck containing 52 distinct Cards in a random order.
      */
     public Deck() {
         initialiseCards();
