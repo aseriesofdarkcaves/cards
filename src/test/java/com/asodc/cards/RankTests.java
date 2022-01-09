@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class RankTests {
     @Test
     public void getRandomRank() {
-        final Rank rank = Rank.random();
+        Rank rank = Rank.random();
         Assertions.assertNotNull(rank, "Rank cannot be null");
     }
 }
