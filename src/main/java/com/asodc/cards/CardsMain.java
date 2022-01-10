@@ -15,7 +15,7 @@ public class CardsMain {
         playerList.add(player2);
         playerList.add(player3);
 
-        TexasHoldEm texasHoldEm = new TexasHoldEm(playerList);
-        texasHoldEm.start();
+        CardGame game = new TexasHoldEm(playerList);
+        game.start();
     }
 }
