@@ -1,7 +1,7 @@
-package com.asodc.cards.poker;
+package com.asodc.cards.game.poker;
 
 import com.asodc.cards.Card;
-import com.asodc.cards.CardGame;
+import com.asodc.cards.game.CardGame;
 import com.asodc.cards.Deck;
 import com.asodc.cards.Player;
 
@@ -22,10 +22,7 @@ public class TexasHoldEm implements CardGame {
     @Override
     public void start() {
         // Each player gets a hand of 2 cards in their HOLE/POCKET
-        //players.forEach(player -> player.setHand(deck.deal(2)));
-        for (Player player : players) {
-            player.setHand(deck.deal(2));
-        }
+        dealHoleCards();
 
         // PREFLOP is the first round where players can either FOLD, BET, CHECK or RAISE without any community cards having been dealt
 
@@ -58,10 +55,31 @@ public class TexasHoldEm implements CardGame {
     }
 
     /**
+     * Takes the top Card from the Deck and discards it from play.
+     */
+    void burnCard() {
+        deck.deal();
+    }
+
+    /**
+     * Deals two Cards to each Player.
+     * There are two rounds of dealing, with one Card being dealt per Player per dealing-round.
+     */
+    void dealHoleCards() {
+        //players.forEach(player -> player.setHand(deck.deal(2)));
+        // outer loop runs twice to ensure Players get a maximum two Cards
+        for (int i = 0; i < 2; i++) {
+            for (Player player : players) {
+                player.addCardsToHand(deck.deal());
+            }
+        }
+    }
+
+    /**
      * The FLOP is the second round where 3 COMMUNITY CARDS are shown.
      * Players can either FOLD, BET, CHECK or RAISE, depending on the situation.
      */
-    private void flop() {
+    void flop() {
         communityCards.addAll(deck.deal(3));
     }
 
@@ -69,7 +87,7 @@ public class TexasHoldEm implements CardGame {
      * The TURN is the third round and causes another COMMUNITY CARD to be shown.
      * Players can either FOLD, BET, CHECK or RAISE, depending on the situation.
      */
-    private void turn() {
+    void turn() {
         communityCards.addAll(deck.deal());
     }
 
@@ -77,15 +95,15 @@ public class TexasHoldEm implements CardGame {
      * The RIVER is the fourth and final round and causes the last COMMUNITY CARD to be shown.
      * The players can either FOLD, BET, CHECK or RAISE, depending on the situation.
      */
-    private void river() {
+    void river() {
         communityCards.addAll(deck.deal());
     }
 
     /**
-     * Takes the top Card from the Deck and discards it from play.
+     * Evaluates the Player hands to determine the winner(s) of the game.
      */
-    private void burnCard() {
-        deck.deal();
+    void evaluatePlayerHands() {
+        // TODO: evaluate player hands
     }
 
     private void printCommunityCards() {
@@ -100,13 +118,6 @@ public class TexasHoldEm implements CardGame {
             }
             System.out.println();
         }
-    }
-
-    /**
-     * Evaluates the Player hands to determine the winner(s) of the game.
-     */
-    private void evaluatePlayerHands() {
-        // TODO: evaluate player hands
     }
 
     @Override

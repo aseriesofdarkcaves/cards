@@ -1,4 +1,4 @@
-package com.asodc.cards;
+package com.asodc.cards.game;
 
 public interface CardGame {
     void start();
