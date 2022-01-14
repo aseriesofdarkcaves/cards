@@ -104,6 +104,17 @@ public class TexasHoldEm implements CardGame {
      */
     void evaluatePlayerHands() {
         // TODO: evaluate player hands
+        // how do you figure out the best cards for a player?
+        for (Player player : players) {
+            // you probably have to start with a hand being 7 cards
+            List<Card> hand = new ArrayList<>(communityCards);
+            hand.addAll(player.getHand());
+            // sort the 7 cards - may need to implement Comparator or Comparable
+            //hand.sort();
+        }
+
+        // cut the bottom two cards out of the hand?
+        // determine what hand they have
     }
 
     private void printCommunityCards() {
