@@ -2,7 +2,7 @@ package com.asodc.cards;
 
 import java.util.Objects;
 
-public class Card {
+public class Card implements Comparable<Card> {
     private final Rank rank;
     private final Suit suit;
 
@@ -55,5 +55,11 @@ public class Card {
     @Override
     public int hashCode() {
         return Objects.hash(rank, suit);
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        // don't care about suit?
+        return Integer.compare(getRank().ordinal(), o.getRank().ordinal());
     }
 }

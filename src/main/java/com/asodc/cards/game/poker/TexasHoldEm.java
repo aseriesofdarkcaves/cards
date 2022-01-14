@@ -6,6 +6,7 @@ import com.asodc.cards.Deck;
 import com.asodc.cards.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TexasHoldEm implements CardGame {
@@ -109,12 +110,10 @@ public class TexasHoldEm implements CardGame {
             // you probably have to start with a hand being 7 cards
             List<Card> hand = new ArrayList<>(communityCards);
             hand.addAll(player.getHand());
-            // sort the 7 cards - may need to implement Comparator or Comparable
-            //hand.sort();
+            // sort the 7 cards
+            // Card implements Comparable<Card>
+            Collections.sort(hand);
         }
-
-        // cut the bottom two cards out of the hand?
-        // determine what hand they have
     }
 
     private void printCommunityCards() {
